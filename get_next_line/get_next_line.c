@@ -6,7 +6,7 @@
 /*   By: imiqor <imiqor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 20:55:36 by imiqor            #+#    #+#             */
-/*   Updated: 2024/11/29 23:24:02 by imiqor           ###   ########.fr       */
+/*   Updated: 2025/03/07 21:15:06 by imiqor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*clean_save(char *buff)
 		free(buff);
 		return (NULL);
 	}
-	str = malloc((ft_strlen(buff) - i) + 1);
+	str = malloc((ft_sstrlen(buff) - i) + 1);
 	if (!str)
 		return (NULL);
 	j = 0;
@@ -82,8 +82,8 @@ char	*read_from_file(char *save, int fd)
 			return (NULL);
 		}
 		buff[readed] = '\0';
-		save = ft_strjoin(save, buff);
-		if (ft_strchr(buff, '\n'))
+		save = ft_sstrjoin(save, buff);
+		if (ft_sstrchr(buff, '\n'))
 			break ;
 	}
 	free(buff);

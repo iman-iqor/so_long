@@ -6,7 +6,7 @@
 /*   By: imiqor <imiqor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 20:55:27 by imiqor            #+#    #+#             */
-/*   Updated: 2024/12/11 15:02:47 by imiqor           ###   ########.fr       */
+/*   Updated: 2025/03/07 21:14:23 by imiqor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-char	*ft_strjoin(char *save, char *buff);
-char	*ft_strdup(char *s);
-int		ft_strlen(char *s);
-char	*ft_strchr(char *str, int c);
+char	*ft_sstrjoin(char *save, char *buff);
+char	*ft_sstrdup(char *s);
+int		ft_sstrlen(char *s);
+char	*ft_sstrchr(char *str, int c);
 char	*ft_extract_line(char *str);
 char	*clean_save(char *buff);
 char	*read_from_file(char *save, int fd);

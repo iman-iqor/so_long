@@ -6,13 +6,13 @@
 /*   By: imiqor <imiqor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 20:55:45 by imiqor            #+#    #+#             */
-/*   Updated: 2024/11/29 23:14:07 by imiqor           ###   ########.fr       */
+/*   Updated: 2025/03/07 21:15:40 by imiqor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(char *s)
+int	ft_sstrlen(char *s)
 {
 	int	i;
 
@@ -24,13 +24,13 @@ int	ft_strlen(char *s)
 	return (i);
 }
 
-char	*ft_strdup(char *s)
+char	*ft_sstrdup(char *s)
 {
 	int		len;
 	int		i;
 	char	*s2;
 
-	len = ft_strlen(s);
+	len = ft_sstrlen(s);
 	s2 = malloc(len + 1);
 	i = 0;
 	if (!s2)
@@ -44,7 +44,7 @@ char	*ft_strdup(char *s)
 	return (s2);
 }
 
-char	*ft_strjoin(char *save, char *buff)
+char	*ft_sstrjoin(char *save, char *buff)
 {
 	int		len;
 	char	*str;
@@ -54,18 +54,18 @@ char	*ft_strjoin(char *save, char *buff)
 	if (!save && !buff)
 		return (NULL);
 	if (!save && buff)
-		return (ft_strdup(buff));
+		return (ft_sstrdup(buff));
 	if (save && !buff)
-		return (ft_strdup(save));
-	len = ft_strlen(save) + ft_strlen(buff);
+		return (ft_sstrdup(save));
+	len = ft_sstrlen(save) + ft_sstrlen(buff);
 	str = malloc(len + 1);
 	if (!str)
 		return (NULL);
 	i = -1;
-	while (save[++i] && i < ft_strlen(save))
+	while (save[++i] && i < ft_sstrlen(save))
 		str[i] = save[i];
 	j = 0;
-	while (buff[j] && j < ft_strlen(buff))
+	while (buff[j] && j < ft_sstrlen(buff))
 		str[i++] = buff[j++];
 	str[i] = 0;
 	free(save);

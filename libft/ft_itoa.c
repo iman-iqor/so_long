@@ -6,7 +6,7 @@
 /*   By: imiqor <imiqor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:18:35 by imiqor            #+#    #+#             */
-/*   Updated: 2024/11/14 18:37:20 by imiqor           ###   ########.fr       */
+/*   Updated: 2025/03/07 18:25:56 by imiqor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,6 @@ void	checksigne(int *n, size_t *len)
 
 char	*implement(char *str, size_t len, int n)
 {
-	size_t	i;
-
-	i = 0;
 	str[len] = 0;
 	if (n < 0)
 	{
