@@ -1,33 +1,21 @@
 #include"header.h"
 
-int check_extention(char *argv)
-{
-    int len;
-    len  = ft_strlen(argv);
-    if(!(ft_strncmp(argv+len-4,".ber",4)))
-        return 1;
-    return 0;
-}
-void check_argc(int argc)
-{
-    if(argc == 1)
-    {
-        write(1,"u should add the file that contains the map\n",44);
-        exit(1);
-    } 
-}
+
+
 
 int main(int argc,char** argv)
 {
-    check_argc(argc);
+    char** two_d;
+    char* lines;
 
-    if(check_extention(argv[1]))
-    {
-        printf("good extention\n");
-    }
-    else
-    {
-        printf("bad extention\n");
-    }
+    check_argc(argc);
+    check_extention(argv[1]);
+    check_if_file_exist(argv[1]);
+   
+    lines  = join_lines(argv[1]);
+    two_d = split_lines(lines,'\n');
+    check_is_square(two_d,lines);
+    free(lines);
+    ftt_free(two_d);
     return 0;
 }

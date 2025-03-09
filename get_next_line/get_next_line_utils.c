@@ -6,7 +6,7 @@
 /*   By: imiqor <imiqor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 20:55:45 by imiqor            #+#    #+#             */
-/*   Updated: 2025/03/07 21:15:40 by imiqor           ###   ########.fr       */
+/*   Updated: 2025/03/08 20:35:21 by imiqor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	*ft_sstrjoin(char *save, char *buff)
 	return (str);
 }
 
-char	*ft_strchr(char *str, int c)
+char	*ft_sstrchr(char *str, int c)
 {
 	if (!str)
 		return (NULL);
