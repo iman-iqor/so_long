@@ -11,10 +11,16 @@ typedef struct s_state
 	char	**two_d;
 }			t_state;
 
+typedef struct s_splayer
+{
+    int flag;
+    int i;
+    int player;
+}   t_player;
+
 # include "./get_next_line/get_next_line.h"
 # include "./libft/libft.h"
 # include <fcntl.h>
-# include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -30,5 +36,9 @@ void check_argc(int argc);
 int check_if_file_exist(char* argv);
 char* join_lines(char* argv);
 void check_is_square(char** two_d,char* lines);
+void check_player(char** two_d,char* lines);
+void init_player(t_player *play);
+void check_exit(char** two_d,char* lines);
+void check_coins(char** two_d,char* lines);
 
 #endif

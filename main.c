@@ -1,47 +1,54 @@
+#include<unistd.h>
 #include"header.h"
 
-typedef struct s_splayer
+void is_closed_walls(char** two_d,char* lines)
 {
-    int flag;
+    int len;
     int i;
-    int player;
-}   t_player;
-
-void init_player(t_player *play)
-{
-    play->flag = 0;
-    play->i = 0;
-    play->player = 0;
-}
-
-void check_player(char** two_d,char* lines)
-{
-    t_player play;
-    init_player(&play);
-    while(two_d[play.i])
+    int j;
+    i = 0;
+    len  = 0;
+    while(two_d[len])
     {
-        if(ft_strchr(two_d[play.i],'P') && play.flag == 0)
+        len ++;
+    }
+    len--;
+    while(two_d[0][i])
+    {
+        if(two_d[0][i] != '1' || two_d[len][i] != '1')
         {
-            play.flag = 1;
-            play.player = 1;
-        }
-        else if(ft_strchr(two_d[play.i],'P') && play.flag == 1)
-        {
-            write(2,"wrong map\n",10);
-            ftt_free(two_d);
+            write(1,"invalid map not closed\n",23);
             free(lines);
+            ftt_free(two_d);
             exit(1);
         }
-        play.i++;
+        i++;
     }
-    if(!play.player)
+    i = 0;
+    j = ft_strlen(*two_d);
+    while(len > i)
     {
-        write(2,"wrong map no player\n",20);
-        ftt_free(two_d);
-        free(lines);
-        exit(1);
+        // if(two_d[i][0] == '1' || two_d[i][j] == '1')
+        // {
+        //     printf("this is two_d[i][0] %c\n",two_d[i][0]);
+        //     printf("this is two_d[i][j] %c\n",two_d[i][j]);
+        //     write(1,"invalid map not closed second while\n",35);
+        //     free(lines);
+        //     ftt_free(two_d);
+        //     exit(1);
+        // }
+        printf("this is two_d[i][0] %c\n",two_d[i][0]);
+        printf("this is two_d[i][j] %c\n",two_d[i][j]);
+        printf("i%i\n",i);
+        printf("j%i\n",j);
+        printf()
+        i++;
     }
+    
+    (void)lines;
+    printf("%i\n",len);
 }
+
 
 int main(int argc,char** argv)
 {
@@ -56,6 +63,10 @@ int main(int argc,char** argv)
     two_d = split_lines(lines,'\n');
     check_is_square(two_d,lines);
     check_player(two_d,lines);
+    check_exit(two_d,lines);
+    check_coins(two_d,lines);
+    is_closed_walls(two_d,lines);
+
     free(lines);
     ftt_free(two_d);
     return 0;

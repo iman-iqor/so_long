@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imiqor <imiqor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: macbookair <macbookair@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 21:07:52 by macbookair        #+#    #+#             */
-/*   Updated: 2025/03/09 02:51:43 by imiqor           ###   ########.fr       */
+/*   Updated: 2025/03/10 17:08:14 by macbookair       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*ft_strdup(const char *s1);
 
 /* Additional funcitons */
 
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_substr(char const *s, int start, int len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
