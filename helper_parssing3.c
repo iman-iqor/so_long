@@ -13,10 +13,10 @@ int countcharinline(char* text,char c)
 
 void check_coins(char** two_d,char* lines,int *total_c)
 {
-    int flag;
+    // int flag;
     int i;
     *total_c = 0;
-    flag  = 0;
+    // flag  = 0;
     i = 0;
     while(two_d[i])
     {
