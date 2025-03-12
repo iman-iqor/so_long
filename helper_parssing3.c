@@ -71,25 +71,4 @@ void is_closed_walls(char** two_d,char* lines)
         closed.i++;
     }
 }
-void check_only_charachters(char** two_d,char* lines)
-{
-    int i;
-    int j;
-    i = 0;
-    while(two_d[i])
-    {
-        j = 0;
-        while(two_d[i][j])
-        {
-            if(two_d[i][j] != '1' && two_d[i][j] != 'C' && two_d[i][j] != 'P' && two_d[i][j] != 'E' && two_d[i][j] != '0')
-            {
-                write(1,"invalid map strange char\n",25);
-                ftt_free(two_d);
-                free(lines);
-                exit(1);
-            }
-            j++;
-        }
-        i++;
-    }
-}
+

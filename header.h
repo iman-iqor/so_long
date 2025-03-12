@@ -1,6 +1,15 @@
 #ifndef HEADER_H
 # define HEADER_H
 
+
+
+# include "./get_next_line/get_next_line.h"
+# include "./libft/libft.h"
+# include <fcntl.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+
 typedef struct s_state
 {
 	int		i;
@@ -35,13 +44,12 @@ typedef struct s_map
     int total_c;
 	char* lines;
 }   t_map;
+typedef struct s_count
+{
+    int c_count;
+    int E_found;
 
-# include "./get_next_line/get_next_line.h"
-# include "./libft/libft.h"
-# include <fcntl.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
+}   t_count;
 
 char		*ft_ssstrjoin(char *save, char *buff);
 char		*ftt_free(char **arr);
@@ -62,5 +70,13 @@ void		init_closed(t_closed *closed, char **two_d);
 void		closed_error(char **two_d, char *lines);
 void		is_closed_walls(char **two_d, char *lines);
 void		check_only_charachters(char **two_d, char *lines);
+int map_lines_count(char** two_d);
+void flood_fill(t_map *map, int x, int y,t_count* count);
+void is_valid_map(t_map * map, int player_x, int player_y, int total_C);
+void get_coordinates(t_map *map,char c);
+void init_map(t_map *map,char** two_d,char* lines);
+
+
+
 
 #endif
