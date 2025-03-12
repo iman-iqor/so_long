@@ -1,5 +1,5 @@
 CC = cc  
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -lmlx -lXext -lX11
 SRC = main.c ./get_next_line/get_next_line.c ./get_next_line/get_next_line_utils.c split.c helper_parssing1.c \
 helper_parssing2.c helper_parssing3.c helper_parssing4.c helper_parssing5.c 
 
@@ -9,18 +9,15 @@ RM = rm -f
 all: ${NAME} 
 
 ${NAME}: ${SRC}
-	make -C ./ft_printf/
 	make -C ./libft/
-	${CC} ${CFLAGS} ${SRC} ./libft/libft.a ./ft_printf/libftprintf.a -o $(NAME)
+	${CC} ${SRC} ./libft/libft.a -o $(NAME) ${CFLAGS} 
 
 
 clean:
 	make -C ./libft/ clean
-	make -C ./ft_printf/ clean
 
 fclean: clean
 	${RM} $(NAME)
 	make -C ./libft/ fclean
-	make -C ./ft_printf/ fclean
 
 re: fclean all
