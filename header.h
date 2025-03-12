@@ -33,6 +33,7 @@ typedef struct s_map
     int player_x;
     int player_y;
     int total_c;
+	char* lines;
 }   t_map;
 
 # include "./get_next_line/get_next_line.h"

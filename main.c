@@ -52,6 +52,8 @@ void is_valid_map(t_map * map, int player_x, int player_y, int total_C)
     if (count.c_count != total_C && !count.E_found)
     {
         write(2,"not valid\n",10);
+        ftt_free(map->map_two_d);
+        free(map->lines);
         exit(1);
     }
 }
@@ -80,6 +82,7 @@ int main(int argc,char** argv)
     is_closed_walls(two_d,lines);
     check_only_charachters(two_d,lines);
     map.map_two_d = two_d;
+    map.lines = lines;
     map.player_x = 5;
     map.player_y = 1;
     
