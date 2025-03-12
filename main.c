@@ -60,6 +60,47 @@ void is_valid_map(t_map * map, int player_x, int player_y, int total_C)
 
 
 
+void get_coordinates(t_map *map,char c)
+{
+    int i;
+    int j;
+    i = 0;
+    while(map->map_two_d[i])
+    {
+        j = 0;
+        while(map->map_two_d[i][j])
+        {
+            if(map->map_two_d[i][j] == c)
+            {
+                map->player_x = j;
+                map->player_y = i;
+                return;
+            }
+            j++;
+        }
+        i++;
+    }
+}
+
+
+
+
+
+
+
+
+void init_map(t_map *map,char** two_d,char* lines)
+{
+    map->map_two_d = two_d;
+    map->lines = lines;
+    // map->player_x = 5;
+    get_coordinates(map,'P');
+    // printf("x %i\n",map->player_x);
+    // printf("y %i\n",map->player_y);
+    map->line_count = map_lines_count(two_d);
+    // map->player_y = 1;
+}
+
 
 
 int main(int argc,char** argv)
@@ -81,17 +122,16 @@ int main(int argc,char** argv)
     check_coins(two_d,lines,&map.total_c);
     is_closed_walls(two_d,lines);
     check_only_charachters(two_d,lines);
-    map.map_two_d = two_d;
-    map.lines = lines;
-    map.player_x = 5;
-    map.player_y = 1;
+    init_map(&map,two_d,lines);
+    
+    
     
     is_valid_map(&map, map.player_x, map.player_y, map.total_c);
     
-
     
 
     free(lines);
     ftt_free(two_d);
     return 0;
 }
+
