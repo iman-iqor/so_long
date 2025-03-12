@@ -43,15 +43,17 @@ void flood_fill(t_map *map, int x, int y,t_count* count)
     flood_fill(map, x, y - 1, count);
 }
 
-int is_valid_map(t_map * map, int player_x, int player_y, int total_C)
+void is_valid_map(t_map * map, int player_x, int player_y, int total_C)
 {
     t_count count;
     count.c_count = 0;
     count.E_found = 0;
     flood_fill(map, player_x, player_y, &count);
-    if (count.c_count == total_C && count.E_found)
-        return 1;
-    return 0;
+    if (count.c_count != total_C && !count.E_found)
+    {
+        write(2,"not valid\n",10);
+        exit(1);
+    }
 }
 
 
@@ -80,12 +82,9 @@ int main(int argc,char** argv)
     map.map_two_d = two_d;
     map.player_x = 5;
     map.player_y = 1;
-    int i;
-    i = is_valid_map(&map, map.player_x, map.player_y, map.total_c);
-    if(!i)
-    {
-        write(2,"not valid\n",10);
-    }
+    
+    is_valid_map(&map, map.player_x, map.player_y, map.total_c);
+    
 
     
 

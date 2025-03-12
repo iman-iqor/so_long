@@ -75,6 +75,7 @@ char* join_lines(char* argv)
     if(!str)
     {
         write(1,"the file is empty\n",18);
+        exit(1);
     }
     return str;
 }
