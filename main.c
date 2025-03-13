@@ -39,7 +39,7 @@ void init_game(t_game *game)
     if (!game->mlx)
         error_exit("Error: MLX initialization failed\n");
 
-    game->win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "so_long");
+    game->win = mlx_new_window(game->mlx, 640, 480, "so_long");
     if (!game->win)
         error_exit("Error: Failed to create window\n");
 }
@@ -47,7 +47,10 @@ void init_game(t_game *game)
 // Load image from XPM file
 void load_image(t_game *game, char *img_path)
 {
+    //void *mlx_xpm_file_to_image(void *mlx_ptr, char *filename, int *width, int *height);
+
     game->img = mlx_xpm_file_to_image(game->mlx, img_path, &game->img_width, &game->img_height);
+    printf("%i\n",game->img_width);
     if (!game->img)
         error_exit("Error: Could not load image\n");
 }
@@ -55,9 +58,9 @@ void load_image(t_game *game, char *img_path)
 // Render the image in the window
 void render_image(t_game *game)
 {
-    mlx_put_image_to_window(game->mlx, game->win, game->img, 
-                            200 / 2 - game->img_width / 2, 
-                            200 / 2 - game->img_height / 2);
+    //int mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, int x, int y);
+
+    mlx_put_image_to_window(game->mlx, game->win, game->img,200 / 2 - game->img_width / 2, 200 / 2 - game->img_height / 2);
 }
 
 // Handle keypress events
@@ -102,5 +105,6 @@ int main(int argc,char** argv)
     render_image(&game);            // Render the image in the window
     handle_events(&game);           // Handle key events
     game_loop(&game);               // Start the event loop
+   
     return 0;
 }
