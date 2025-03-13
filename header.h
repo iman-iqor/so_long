@@ -9,7 +9,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-#include <mlx.h>
+// #include <mlx.h>
+#include "minilibx/mlx.h"
 typedef struct s_state
 {
 	int		i;
