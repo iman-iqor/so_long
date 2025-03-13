@@ -11,6 +11,28 @@
 # include <unistd.h>
 // #include <mlx.h>
 #include "minilibx/mlx.h"
+
+
+
+#define ESC 65307  // MacOS: 53, Linux: 65307
+# define UP 65362
+# define DOWN 65364
+# define RIGHT 65363
+# define LEFT 65361
+
+typedef struct s_game
+{
+    void    *mlx;
+    void    *win;
+    void    *player_img;
+    void    *coin_img;
+    void    *wall_img;
+    void    *exit_img;
+    void    *floor_img;
+    int     img_width;
+    int     img_height;
+    void* var;
+}   t_game;
 typedef struct s_state
 {
 	int		i;
@@ -40,11 +62,13 @@ typedef struct s_map
     int fd;
     int line_count;
     char** map_two_d;
+	char** map_two_d2;
     int player_x;
     int player_y;
     int total_c;
 	char* lines;
 }   t_map;
+
 typedef struct s_count
 {
     int c_count;

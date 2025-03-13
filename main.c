@@ -1,110 +1,67 @@
-#include<unistd.h>
+
 #include"header.h"
 
-
-
-#define WIN_WIDTH 640
-#define WIN_HEIGHT 480
-#define ESC_KEY 65307  // MacOS: 53, Linux: 65307
-
-typedef struct s_game
+int	exit_window(int keycode, t_game *game)
 {
-    void    *mlx;
-    void    *win;
-    void    *img;
-    int     img_width;
-    int     img_height;
-}   t_game;
+	int	i;
 
-// Print an error message and exit
-void error_exit(char *msg)
-{
-    write(2, msg, strlen(msg));
-    exit(1);
+	if (keycode == ESC)
+	{
+		mlx_clear_window(game->mlx, game->win);
+		mlx_destroy_window(game->mlx, game->win);
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+		exit(0);
+	}
+	return (0);
 }
 
-// Close window when ESC is pressed
-int close_window(t_game *game)
+int	on_keypress(int key, t_game *data)
 {
-    if (game->win)
-        mlx_destroy_window(game->mlx, game->win);
-    exit(0);
-    return (0);
-}
-
-// Initialize MLX and create a window
-void init_game(t_game *game)
-{
-    game->mlx = mlx_init();
-    if (!game->mlx)
-        error_exit("Error: MLX initialization failed\n");
-
-    game->win = mlx_new_window(game->mlx, 640, 480, "so_long");
-    if (!game->win)
-        error_exit("Error: Failed to create window\n");
-}
-
-// Load image from XPM file
-void load_image(t_game *game, char *img_path)
-{
-    //void *mlx_xpm_file_to_image(void *mlx_ptr, char *filename, int *width, int *height);
-
-    game->img = mlx_xpm_file_to_image(game->mlx, img_path, &game->img_width, &game->img_height);
-    printf("%i\n",game->img_width);
-    if (!game->img)
-        error_exit("Error: Could not load image\n");
-}
-
-// Render the image in the window
-void render_image(t_game *game)
-{
-    //int mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, int x, int y);
-
-    mlx_put_image_to_window(game->mlx, game->win, game->img,200 / 2 - game->img_width / 2, 200 / 2 - game->img_height / 2);
-}
-
-// Handle keypress events
-void handle_events(t_game *game)
-{
-    mlx_hook(game->win, 17, 0, close_window, game); // Close on window X button
-    mlx_hook(game->win, 2, 1L << 0, close_window, game); // Close on ESC key
-}
-
-// Run the game loop
-void game_loop(t_game *game)
-{
-    mlx_loop(game->mlx);
+	if (key == ESC)
+		exit_window(ESC, data);
+	else if (key == 'w' || key == UP)
+		move_player(data, 0, -1);
+	else if (key == 's' || key == DOWN)
+		move_player(data, 0, 1);
+	else if (key == 'd' || key == RIGHT)
+		move_player(data, 1, 0);
+	else if (key == 'a' || key == LEFT)
+		move_player(data, -1, 0);
+	return (0);
 }
 
 int main(int argc,char** argv)
 {
-    char** two_d;
-    char* lines;
     t_map map;
+    t_game game;
 
-    memset(&map,0,sizeof(t_map));
+    ft_memset(&map,0,sizeof(t_map));
+    ft_memset(&map,0,sizeof(t_game));
+
     check_argc(argc);
     check_extention(argv[1]);
     check_if_file_exist(argv[1]);
    
-    lines  = join_lines(argv[1]);
-    two_d = split_lines(lines,'\n');
-    check_is_square(two_d,lines);
-    check_player(two_d,lines);
-    check_exit(two_d,lines);
-    check_coins(two_d,lines,&map.total_c);
-    is_closed_walls(two_d,lines);
-    check_only_charachters(two_d,lines);
-    init_map(&map,two_d,lines);
+    map.lines  = join_lines(argv[1]);
+    map.map_two_d = split_lines(map.lines,'\n');
+    map.map_two_d2=split_lines(map.lines,'\n');
+    check_is_square(map.map_two_d,map.lines);
+    check_player(map.map_two_d,map.lines);
+    check_exit(map.map_two_d,map.lines);
+    check_coins(map.map_two_d,map.lines,&map.total_c);
+    is_closed_walls(map.map_two_d,map.lines);
+    check_only_charachters(map.map_two_d,map.lines);
+    init_map(&map,map.map_two_d,map.lines);
     is_valid_map(&map, map.player_x, map.player_y, map.total_c);
 
-    t_game game;
 
-    init_game(&game);               // Initialize MLX and create a window
-    load_image(&game, "pics/coin.xpm"); // Load the XPM image
-    render_image(&game);            // Render the image in the window
-    handle_events(&game);           // Handle key events
-    game_loop(&game);               // Start the event loop
+
+
+
+    init_game(&game,map.map_two_d2);
+    load_image(&game);
+    render_image(&game, map.map_two_d2); 
    
     return 0;
 }
