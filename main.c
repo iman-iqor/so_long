@@ -56,8 +56,8 @@ void load_image(t_game *game, char *img_path)
 void render_image(t_game *game)
 {
     mlx_put_image_to_window(game->mlx, game->win, game->img, 
-                            WIN_WIDTH / 2 - game->img_width / 2, 
-                            WIN_HEIGHT / 2 - game->img_height / 2);
+                            200 / 2 - game->img_width / 2, 
+                            200 / 2 - game->img_height / 2);
 }
 
 // Handle keypress events
@@ -98,7 +98,7 @@ int main(int argc,char** argv)
     t_game game;
 
     init_game(&game);               // Initialize MLX and create a window
-    load_image(&game, "player.xpm"); // Load the XPM image
+    load_image(&game, "pics/coin.xpm"); // Load the XPM image
     render_image(&game);            // Render the image in the window
     handle_events(&game);           // Handle key events
     game_loop(&game);               // Start the event loop
