@@ -32,6 +32,7 @@ void check_extention(char *argv)
 {
     int len;
     len  = ft_strlen(argv);
+
     if((ft_strncmp(argv+len-4,".ber",4)))
     {
         write(1,"bad extension\n",14);

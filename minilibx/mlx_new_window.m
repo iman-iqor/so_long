@@ -696,7 +696,7 @@ void mlx_mouse_hook(mlx_win_list_t *win_ptr, int (*funct_ptr)(), void *param)
 
 void mlx_hook(mlx_win_list_t *win_ptr, int x_event, int x_mask, int (*funct_ptr)(), void *param)
 {
-  [(id)(win_ptr->winid) setEvent:x_event andFunc:funct_ptr andParam:param];
+  [(id)( win_ptr->winid) setEvent:x_event andFunc:funct_ptr andParam:param];
 }
 
 int     mlx_do_key_autorepeatoff(mlx_ptr_t *mlx_ptr)

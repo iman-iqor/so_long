@@ -72,7 +72,7 @@ void is_valid_map(t_map * map, int player_x, int player_y, int total_C)
     }
 }
 
-void get_coordinates(t_map *map,char c)
+void get_coordinates_player(t_map *map,char c)
 {
     int i;
     int j;
