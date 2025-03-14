@@ -11,23 +11,22 @@ int countcharinline(char* text,char c)
     return count;
 }
 
-void check_coins(char** two_d,char* lines,int *total_c)
+void check_coins(t_map *map)
 {
-    // int flag;
     int i;
-    *total_c = 0;
-    // flag  = 0;
+    map->total_c = 0;
     i = 0;
-    while(two_d[i])
+    while(map->map_two_d[i])
     {
-        (*total_c)+=countcharinline(two_d[i],'C');
+        (map->total_c)+=countcharinline(map->map_two_d[i],'C');
         i++;
     }
-    if(!(*total_c))
+    if(!(map->total_c))
     {
-        write(2,"invalid map no coins\n",21);
-        ftt_free(two_d);
-        free(lines);
+        write(2,"Error : invalid map no coins\n",29);
+        ftt_free(map->map_two_d);
+        ftt_free(map->map_two_d2);
+        free(map->lines);
         exit(1);
     }
 }
@@ -39,35 +38,36 @@ void init_closed(t_closed* closed,char** two_d)
     closed->j = ft_strlen(*two_d);
 }
 
-void closed_error(char** two_d,char* lines)
+void closed_error(t_map *map)
 {
-    write(1,"invalid map not closed\n",23);
-    free(lines);
-    ftt_free(two_d);
+    write(1,"Error :invalid map not closed\n",30);
+    free(map->lines);
+    ftt_free(map->map_two_d);
+    ftt_free(map->map_two_d2);
     exit(1);
 }
 
-void is_closed_walls(char** two_d,char* lines)
+void is_closed_walls(t_map *map)
 {
     t_closed closed;
-    init_closed(&closed,two_d);
-    while(two_d[closed.len])
+    init_closed(&closed,map->map_two_d);
+    while(map->map_two_d[closed.len])
     {
         closed.len ++;
     }
     closed.len--;
-    while(two_d[0][closed.i])
+    while(map->map_two_d[0][closed.i])
     {
-        if(two_d[0][closed.i] != '1' || two_d[closed.len][closed.i] != '1')
-            closed_error(two_d,lines);
+        if(map->map_two_d[0][closed.i] != '1' || map->map_two_d[closed.len][closed.i] != '1')
+            closed_error(map);
         closed.i++;
     }
     closed.i = 0;
     closed.j--;
     while(closed.len >= closed.i)
     {
-        if(two_d[closed.i][0] != '1' || two_d[closed.i][closed.j] != '1')
-        closed_error(two_d,lines);
+        if(map->map_two_d[closed.i][0] != '1' || map->map_two_d[closed.i][closed.j] != '1')
+        closed_error(map);
         closed.i++;
     }
 }

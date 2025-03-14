@@ -12,15 +12,18 @@ all: ${NAME}
 
 ${NAME}: ${SRC}
 	make -C ./libft/
+	make -C ./ft_printf/
 	# make -C ./minilibx/  
-	${CC} ${SRC} ./libft/libft.a -o $(NAME) ${CFLAGS} ${MLX_FLAGS_LINUX}
+	${CC} ${SRC} ./libft/libft.a ./ft_printf/libftprintf.a -o $(NAME) ${CFLAGS} ${MLX_FLAGS_LINUX}
 
 
 clean:
 	make -C ./libft/ clean
+	make -C ./ft_printf/ clean
 
 fclean: clean
 	${RM} $(NAME)
 	make -C ./libft/ fclean
+	make -C ./ft_printf/ fclean
 
 re: fclean all

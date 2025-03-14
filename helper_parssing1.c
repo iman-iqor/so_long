@@ -69,6 +69,13 @@ char* join_lines(char* argv)
     while(s)
     {
         s = get_next_line(fd);
+        if(!(ft_strncmp(s,"\n",1)))
+        {
+            write(2,"Error :invalid map has newlines\n",32);
+            free(s);
+            free(str);
+            exit(1);
+        }
         if(s)
             str = ft_ssstrjoin(str,s);
         free(s);

@@ -3,6 +3,7 @@
 
 # include "./get_next_line/get_next_line.h"
 # include "./libft/libft.h"
+# include "./ft_printf/ft_printf.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -93,20 +94,20 @@ void		check_extention(char *argv);
 void		check_argc(int argc);
 int			check_if_file_exist(char *argv);
 char		*join_lines(char *argv);
-void		check_is_square(char **two_d, char *lines);
-void		check_player(char **two_d, char *lines);
+void		check_is_square(t_map *map);
+void		check_player(t_map *map);
 void		init_player(t_player *play);
-void		check_exit(char **two_d, char *lines);
-void		check_coins(char **two_d, char *lines, int *total_coins);
+void		check_exit(t_map *map);
+void		check_coins(t_map *map);
 void		init_closed(t_closed *closed, char **two_d);
-void		closed_error(char **two_d, char *lines);
-void		is_closed_walls(char **two_d, char *lines);
-void		check_only_charachters(char **two_d, char *lines);
+void		closed_error(t_map *map);
+void		is_closed_walls(t_map *map);
+void		check_only_charachters(t_map *map);
 int			map_lines_count(char **two_d);
 void		flood_fill(t_map *map, int x, int y, t_count *count);
-void		is_valid_map(t_map *map, int player_x, int player_y, int total_C);
+void		is_valid_map(t_map *map);
 void		get_coordinates_player(t_map *map, char c);
-void		init_map(t_map *map, char **two_d, char *lines);
+void		init_map(t_map *map);
 void		init_game(t_game *game, char **two_d);
 void		load_image(t_imane *t_imane);
 void		render_image(t_game *game, char **two_d);
@@ -116,4 +117,5 @@ int	close_window(void *ptr);
 void	success(t_imane *imane, int new_x, int new_y);
 void	fix_door(t_imane *imane, int new_x, int new_y);
 void	move_player(t_imane *imane, int x, int y);
+void player_error(t_map *map);
 #endif

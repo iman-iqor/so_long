@@ -29,15 +29,14 @@ int	main(int argc, char **argv)
 
 	map.map_two_d = split_lines(map.lines, '\n');
 	map.map_two_d2 = split_lines(map.lines, '\n');
-	check_is_square(map.map_two_d, map.lines);
-	check_player(map.map_two_d, map.lines);
-	check_exit(map.map_two_d, map.lines);
-	check_coins(map.map_two_d, map.lines, &map.total_c);
-	is_closed_walls(map.map_two_d, map.lines);
-	check_only_charachters(map.map_two_d, map.lines);
-	init_map(&map, map.map_two_d, map.lines);
-	is_valid_map(&map, map.player_x, map.player_y, map.total_c);
-	// check the lngh is not greater than something chi haja
+	check_is_square(&map);
+	check_player(&map);
+	check_exit(&map);
+	check_coins(&map);
+	is_closed_walls(&map);
+	check_only_charachters(&map);
+	init_map(&map);
+	is_valid_map(&map);
 
 	init_game(&game, map.map_two_d2);
 	load_image(&ahmed);

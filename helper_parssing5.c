@@ -1,17 +1,10 @@
 #include"header.h"
 
-void init_map(t_map *map,char** two_d,char* lines)
+void init_map(t_map *map)
 {
-    map->map_two_d = two_d;
-    map->lines = lines;
-    // map->player_x = 5;
     get_coordinates_player(map,'P');
     get_coordinates_exit(map,'E');
-
-    // printf("x %i\n",map->player_x);
-    // printf("y %i\n",map->player_y);
-    map->line_count = map_lines_count(two_d);
-    // map->player_y = 1;
+    map->line_count = map_lines_count(map->map_two_d);
 }
 
 void get_coordinates_exit(t_map *map,char c)
