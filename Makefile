@@ -1,5 +1,5 @@
 CC = cc  -g3
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror
 MLX_FLAGS_MAC = -framework OpenGL -framework AppKit -L./minilibx -lmlx
 MLX_FLAGS_LINUX = -lmlx -lXext -lX11
 SRC = main.c ./get_next_line/get_next_line.c ./get_next_line/get_next_line_utils.c split.c helper_parssing1.c \

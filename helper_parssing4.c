@@ -48,7 +48,7 @@ void flood_fill(t_map *map, int x, int y,t_count* count)
         count->c_count++;
 
     if (map->map_two_d[y][x] == 'E')
-        count->E_found++;
+        count->E_found=1;
 
     map->map_two_d[y][x] = 'V';
 
@@ -58,13 +58,12 @@ void flood_fill(t_map *map, int x, int y,t_count* count)
     flood_fill(map, x, y - 1, count);
 }
 
-void is_valid_map(t_map * map)
+void is_valid_map(t_map * map,t_count* count)
 {
-    t_count count;
-    count.c_count = 0;
-    count.E_found = 0;
-    flood_fill(map, map->player_x, map->player_y, &count);
-    if (count.c_count != map->total_c && !count.E_found)
+    count->c_count = 0;
+    count->E_found = 0;
+    flood_fill(map, map->player_x, map->player_y, count);
+    if (count->c_count != map->total_c || !count->E_found)
     {
         write(2,"Error : not valid flood fill\n",29);
         ftt_free(map->map_two_d);

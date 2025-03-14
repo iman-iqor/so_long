@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   header.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: imiqor <imiqor@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/14 20:21:33 by imiqor            #+#    #+#             */
+/*   Updated: 2025/03/14 20:22:16 by imiqor           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef HEADER_H
 # define HEADER_H
 
@@ -71,18 +83,18 @@ typedef struct s_map
 
 }			t_map;
 
-typedef struct
-{
-	t_game	*game;
-	t_map	*map;
-}			t_imane;
-
 typedef struct s_count
 {
 	int		c_count;
 	int		E_found;
 
 }			t_count;
+typedef struct
+{
+	t_game	*game;
+	t_map	*map;
+	t_count	*count;
+}			t_data;
 
 char		*ft_ssstrjoin(char *save, char *buff);
 char		*ftt_free(char **arr);
@@ -105,18 +117,19 @@ void		is_closed_walls(t_map *map);
 void		check_only_charachters(t_map *map);
 int			map_lines_count(char **two_d);
 void		flood_fill(t_map *map, int x, int y, t_count *count);
-void		is_valid_map(t_map *map);
+void		is_valid_map(t_map *map, t_count *count);
 void		get_coordinates_player(t_map *map, char c);
 void		init_map(t_map *map);
 void		init_game(t_game *game, char **two_d);
-void		load_image(t_imane *t_imane);
+void		load_image(t_data *t_data);
 void		render_image(t_game *game, char **two_d);
 void		get_coordinates_exit(t_map *map, char c);
-int			key_handler(int keycode, t_imane *imane);
+int			key_handler(int keycode, t_data *data);
 int			close_window(void *ptr);
-void		success(t_imane *imane, int new_x, int new_y);
-void		fix_door(t_imane *imane, int new_x, int new_y);
-void		move_player(t_imane *imane, int x, int y);
+void		success(t_data *data, int new_x, int new_y);
+void		fix_door(t_data *data, int new_x, int new_y);
+void		move_player(t_data *data, int x, int y);
 void		player_error(t_map *map);
-void		image_fail_to_load(t_imane *imane);
+void		image_fail_to_load(t_data *data);
+void		join_lines_error(char *s, char *str);
 #endif

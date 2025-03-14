@@ -6,14 +6,14 @@
 /*   By: imiqor <imiqor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 20:55:27 by imiqor            #+#    #+#             */
-/*   Updated: 2025/03/07 21:14:23 by imiqor           ###   ########.fr       */
+/*   Updated: 2025/03/14 19:19:40 by imiqor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 1024
 # endif
 
 # include <fcntl.h>

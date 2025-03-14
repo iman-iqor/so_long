@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   helper_parssing1.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: imiqor <imiqor@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/14 20:27:44 by imiqor            #+#    #+#             */
+/*   Updated: 2025/03/14 20:27:45 by imiqor           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include"header.h"
 
 char	*ft_ssstrjoin(char *save, char *buff)
@@ -31,11 +43,16 @@ char	*ft_ssstrjoin(char *save, char *buff)
 void check_extention(char *argv)
 {
     int len;
-    len  = ft_strlen(argv);
+    char  *tmp;
 
-    if((ft_strncmp(argv+len-4,".ber",4)))
+    if (!argv)
+        return ;
+    len  = ft_strlen(argv);
+    tmp = ft_strrchr(argv, '/');
+    if((ft_strncmp(argv+len-4,".ber",4)) || (ft_strlen(argv) <= 4)
+        || (tmp && ft_strlen(ft_strrchr(tmp, '/')) <= 5))
     {
-        write(1,"bad extension\n",14);
+        write(1,"Error \n bad extension\n",23);
         exit(1);
     }
 }
@@ -43,7 +60,7 @@ void check_argc(int argc)
 {
     if(argc == 1)
     {
-        write(1,"u should add the file that contains the map\n",44);
+        write(1,"Error \nu should add the file that contains the map\n",52);
         exit(1);
     } 
 }
@@ -53,10 +70,17 @@ int check_if_file_exist(char* argv)
     fd  = open(argv,O_RDONLY);
     if(fd < 0)
     {
-        perror("file");
+        perror("Error\n");
         exit(1);
     }
     return fd;
+}
+void join_lines_error(char* s,char *str)
+{
+    write(2,"Error\n :invalid map has newlines\n",34);
+    free(s);
+    free(str);
+    exit(1);
 }
 char* join_lines(char* argv)
 {
@@ -71,10 +95,7 @@ char* join_lines(char* argv)
         s = get_next_line(fd);
         if(!(ft_strncmp(s,"\n",1)))
         {
-            write(2,"Error :invalid map has newlines\n",32);
-            free(s);
-            free(str);
-            exit(1);
+            join_lines_error(s,str);
         }
         if(s)
             str = ft_ssstrjoin(str,s);
@@ -82,7 +103,7 @@ char* join_lines(char* argv)
     }
     if(!str)
     {
-        write(1,"the file is empty\n",18);
+        write(1,"Error \nthe file is empty\n",26);
         exit(1);
     }
     return str;
