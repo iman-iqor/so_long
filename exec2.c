@@ -9,7 +9,6 @@ void	success(t_imane *imane, int new_x, int new_y)
 	{
 		write(1, "success!\n", 9);
 		close_window(imane);
-		
 		exit(0);
 	}
 }
@@ -23,17 +22,20 @@ void	fix_door(t_imane *imane, int new_x, int new_y)
 		imane->map->map_two_d2[imane->map->exit_y][imane->map->exit_x] = 'E';
 }
 
+// #include "libft.h"
+
 void	move_player(t_imane *imane, int x, int y)
 {
-	static int moves;
-	int new_x;
-	int new_y;
+	static int	moves;
+	int			new_x;
+	int			new_y;
+	char		*number;
 
-	printf("Moves: %d\n", ++moves);
 	new_x = imane->map->player_x + x;
 	new_y = imane->map->player_y + y;
 	if (imane->map->map_two_d2[new_y][new_x] == '1')
 		return ;
+	ft_printf("Moves: %d\n", ++moves);
 	success(imane, new_x, new_y);
 	if (imane->map->map_two_d2[new_y][new_x] == 'C')
 		imane->map->c_count++;
@@ -43,4 +45,9 @@ void	move_player(t_imane *imane, int x, int y)
 	imane->map->map_two_d2[new_y][new_x] = 'P';
 	fix_door(imane, new_x, new_y);
 	render_image(imane->game, imane->map->map_two_d2);
+	number = ft_itoa(moves);
+	if (number)
+		mlx_string_put(imane->game->mlx, imane->game->win, 10, 10, 0xff0000,
+			number);
+	free(number);
 }
