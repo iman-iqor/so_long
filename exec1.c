@@ -65,7 +65,6 @@ void	render_image(t_game *game, char **two_d)
 {
 	int x, y;
 	y = 0;
-	free(game->var);
 	game->var = NULL;
 	while (two_d[y])
 	{

@@ -8,6 +8,7 @@ void	success(t_imane *imane, int new_x, int new_y)
 	if (e == 'E' && imane->map->total_c == imane->map->c_count)
 	{
 		write(1, "success!\n", 9);
+		close_window(imane);
 		
 		exit(0);
 	}
@@ -41,6 +42,5 @@ void	move_player(t_imane *imane, int x, int y)
 	imane->map->player_y = new_y;
 	imane->map->map_two_d2[new_y][new_x] = 'P';
 	fix_door(imane, new_x, new_y);
-	// mlx_clear_window(imane->game->mlx, imane->game->win);
 	render_image(imane->game, imane->map->map_two_d2);
 }
