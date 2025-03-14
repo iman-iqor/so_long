@@ -10,7 +10,7 @@ void	init_game(t_game *game, char **two_d)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 	{
-		write(2, "failed to init mlx\n", 19);
+		write(2, "Error \n:failed to init mlx\n", 28);
 		exit(1);
 	}
 	game->win = mlx_new_window(game->mlx, columns * 67, rows * 67, "so_long");
@@ -22,25 +22,16 @@ void	init_game(t_game *game, char **two_d)
 		exit(1);
 	}
 }
-void	load_image(t_imane *imane)
+
+void	image_fail_to_load(t_imane *imane)
 {
 	t_game	*game;
 
 	game = imane->game;
-	game->player_img = mlx_xpm_file_to_image(game->mlx, "pics/player1.xpm",
-			&game->img_width, &game->img_height);
-	game->coin_img = mlx_xpm_file_to_image(game->mlx, "pics/coin1.xpm",
-			&game->img_width, &game->img_height);
-	game->wall_img = mlx_xpm_file_to_image(game->mlx, "pics/wall1.xpm",
-			&game->img_width, &game->img_height);
-	game->exit_img = mlx_xpm_file_to_image(game->mlx, "pics/door1.xpm",
-			&game->img_width, &game->img_height);
-	game->background_img = mlx_xpm_file_to_image(game->mlx,
-			"pics/background1.xpm", &game->img_width, &game->img_height);
 	if (!game->player_img || !game->coin_img || !game->wall_img
 		|| !game->exit_img || !game->background_img)
 	{
-		write(2, "could not load one or more images\n", 34);
+		write(2, "Error\n :could not load one or more images\n", 43);
 		if (game->coin_img)
 			mlx_destroy_image(game->mlx, game->coin_img);
 		if (game->player_img)
@@ -59,6 +50,24 @@ void	load_image(t_imane *imane)
 		ftt_free(imane->map->map_two_d);
 		exit(1);
 	}
+}
+
+void	load_image(t_imane *imane)
+{
+	t_game	*game;
+
+	game = imane->game;
+	game->player_img = mlx_xpm_file_to_image(game->mlx, "pics/player1.xpm",
+			&game->img_width, &game->img_height);
+	game->coin_img = mlx_xpm_file_to_image(game->mlx, "pics/coin1.xpm",
+			&game->img_width, &game->img_height);
+	game->wall_img = mlx_xpm_file_to_image(game->mlx, "pics/wall1.xpm",
+			&game->img_width, &game->img_height);
+	game->exit_img = mlx_xpm_file_to_image(game->mlx, "pics/door1.xpm",
+			&game->img_width, &game->img_height);
+	game->background_img = mlx_xpm_file_to_image(game->mlx,
+			"pics/background1.xpm", &game->img_width, &game->img_height);
+	image_fail_to_load(imane);
 }
 
 void	render_image(t_game *game, char **two_d)

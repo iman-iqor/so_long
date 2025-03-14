@@ -22,8 +22,6 @@ void	fix_door(t_imane *imane, int new_x, int new_y)
 		imane->map->map_two_d2[imane->map->exit_y][imane->map->exit_x] = 'E';
 }
 
-// #include "libft.h"
-
 void	move_player(t_imane *imane, int x, int y)
 {
 	static int	moves;

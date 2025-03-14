@@ -1,14 +1,14 @@
 #ifndef HEADER_H
 # define HEADER_H
 
+# include "./ft_printf/ft_printf.h"
 # include "./get_next_line/get_next_line.h"
 # include "./libft/libft.h"
-# include "./ft_printf/ft_printf.h"
 # include <fcntl.h>
+# include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-#include <mlx.h>
 // #include "minilibx/mlx.h"
 
 # define ESC 65307 // MacOS: 53, Linux: 65307
@@ -66,7 +66,7 @@ typedef struct s_map
 	int		exit_x;
 	int		exit_y;
 	int		total_c;
-    int c_count;
+	int		c_count;
 	char	*lines;
 
 }			t_map;
@@ -111,11 +111,12 @@ void		init_map(t_map *map);
 void		init_game(t_game *game, char **two_d);
 void		load_image(t_imane *t_imane);
 void		render_image(t_game *game, char **two_d);
-void get_coordinates_exit(t_map *map,char c);
-int	key_handler(int keycode, t_imane *imane);
-int	close_window(void *ptr);
-void	success(t_imane *imane, int new_x, int new_y);
-void	fix_door(t_imane *imane, int new_x, int new_y);
-void	move_player(t_imane *imane, int x, int y);
-void player_error(t_map *map);
+void		get_coordinates_exit(t_map *map, char c);
+int			key_handler(int keycode, t_imane *imane);
+int			close_window(void *ptr);
+void		success(t_imane *imane, int new_x, int new_y);
+void		fix_door(t_imane *imane, int new_x, int new_y);
+void		move_player(t_imane *imane, int x, int y);
+void		player_error(t_map *map);
+void		image_fail_to_load(t_imane *imane);
 #endif
