@@ -6,7 +6,7 @@
 /*   By: imiqor <imiqor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 20:55:36 by imiqor            #+#    #+#             */
-/*   Updated: 2025/03/07 21:15:06 by imiqor           ###   ########.fr       */
+/*   Updated: 2025/03/15 01:17:52 by imiqor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,19 @@ char	*read_from_file(char *save, int fd)
 	return (save);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, int flag)
 {
 	static char	*save;
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
+	if (flag == 1)
+	{
+		free(save);
+		save = NULL;
+		return (NULL);
+	}
 	save = read_from_file(save, fd);
 	if (!save)
 		return (NULL);

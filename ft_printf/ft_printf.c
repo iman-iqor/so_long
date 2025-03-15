@@ -6,7 +6,7 @@
 /*   By: imiqor <imiqor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 16:26:44 by imiqor            #+#    #+#             */
-/*   Updated: 2025/03/13 23:28:18 by imiqor           ###   ########.fr       */
+/*   Updated: 2025/03/15 01:18:33 by imiqor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int	ft_printf(const char *format, ...)
 	len = 0;
 	i = 0;
 	if (write(1, 0, 0) == -1)
-	// mlx_clear_window(imane->game->mlx, imane->game->win);
 		return (-1);
 	while (format[i])
 	{

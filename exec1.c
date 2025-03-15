@@ -6,7 +6,7 @@
 /*   By: imiqor <imiqor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 20:22:39 by imiqor            #+#    #+#             */
-/*   Updated: 2025/03/14 20:26:59 by imiqor           ###   ########.fr       */
+/*   Updated: 2025/03/15 01:14:01 by imiqor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	load_image(t_data *data)
 
 void	render_image(t_game *game, char **two_d)
 {
-	int x, y;
+	int (x), (y);
 	y = 0;
 	game->var = NULL;
 	while (two_d[y])

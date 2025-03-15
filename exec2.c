@@ -6,7 +6,7 @@
 /*   By: imiqor <imiqor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 20:27:29 by imiqor            #+#    #+#             */
-/*   Updated: 2025/03/14 20:27:35 by imiqor           ###   ########.fr       */
+/*   Updated: 2025/03/15 01:11:50 by imiqor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	move_player(t_data *data, int x, int y)
 			number);
 	free(number);
 }
+
 int	close_window(void *ptr)
 {
 	t_data	*data;

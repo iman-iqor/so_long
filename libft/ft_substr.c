@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macbookair <macbookair@student.42.fr>      +#+  +:+       +#+        */
+/*   By: imiqor <imiqor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 14:34:04 by imiqor            #+#    #+#             */
-/*   Updated: 2025/03/10 17:07:55 by macbookair       ###   ########.fr       */
+/*   Updated: 2025/03/15 01:17:20 by imiqor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s,  int start, int len)
+char	*ft_substr(char const *s, int start, int len)
 {
 	char	*str;
-	int	i;
+	int		i;
 
 	if (!s)
 		return (NULL);

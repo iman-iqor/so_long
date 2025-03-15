@@ -6,7 +6,7 @@
 /*   By: imiqor <imiqor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 20:21:33 by imiqor            #+#    #+#             */
-/*   Updated: 2025/03/14 20:22:16 by imiqor           ###   ########.fr       */
+/*   Updated: 2025/03/15 00:35:13 by imiqor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,10 @@ typedef struct s_map
 typedef struct s_count
 {
 	int		c_count;
-	int		E_found;
+	int		e_found;
 
 }			t_count;
-typedef struct
+typedef struct s_data
 {
 	t_game	*game;
 	t_map	*map;
@@ -132,4 +132,5 @@ void		move_player(t_data *data, int x, int y);
 void		player_error(t_map *map);
 void		image_fail_to_load(t_data *data);
 void		join_lines_error(char *s, char *str);
+void		check_exit_error(t_map *map);
 #endif

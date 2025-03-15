@@ -6,7 +6,7 @@
 /*   By: imiqor <imiqor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 19:39:51 by imiqor            #+#    #+#             */
-/*   Updated: 2025/03/14 19:43:11 by imiqor           ###   ########.fr       */
+/*   Updated: 2025/03/15 01:16:20 by imiqor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft(t_data *data)
 	is_closed_walls(data->map);
 	check_only_charachters(data->map);
 	init_map(data->map);
-	is_valid_map(data->map,data->count);
+	is_valid_map(data->map, data->count);
 	init_game(data->game, data->map->map_two_d2);
 	load_image(data);
 	render_image(data->game, data->map->map_two_d2);
@@ -34,11 +34,11 @@ void	ft(t_data *data)
 
 int	main(int argc, char **argv)
 {
-	t_map map;
-	t_game game;
-	t_count count;
-	t_data data;
-	
+	t_map	map;
+	t_game	game;
+	t_count	count;
+	t_data	data;
+
 	data.game = &game;
 	data.map = &map;
 	data.count = &count;
